@@ -1,0 +1,39 @@
+<?xml version="1.0"?>
+<project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"
+	xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>com.food.trade</groupId>
+		<artifactId>foodTrade</artifactId>
+		<version>1.0-SNAPSHOT</version>
+	</parent>
+	<artifactId>foodTrade-touch</artifactId>
+	<packaging>war</packaging>
+	<name>foodTrade-touch Maven Webapp</name>
+	<url>http://maven.apache.org</url>
+
+
+
+	<build>
+		<finalName>foodTrade-touch</finalName>
+	</build>
+
+	<dependencies>
+		<dependency>
+			<groupId>com.food.trade</groupId>
+			<artifactId>foodTrade-server</artifactId>
+			<version>1.0-SNAPSHOT</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-webmvc</artifactId>
+			<version>${project.spring.version}</version>
+		</dependency>
+
+	</dependencies>
+
+
+
+
+</project>
