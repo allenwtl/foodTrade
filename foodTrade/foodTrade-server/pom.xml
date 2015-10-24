@@ -17,13 +17,4 @@
 		<finalName>foodTrade-server</finalName>
 	</build>
 
-
-	<dependencies>
-		<dependency>
-			<groupId>com.food.trade</groupId>
-			<artifactId>foodTrade-common</artifactId>
-			<version>1.0-SNAPSHOT</version>
-		</dependency>
-	</dependencies>
-
 </project>
