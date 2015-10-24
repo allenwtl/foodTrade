@@ -5,6 +5,14 @@
 		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
 		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd "
-	default-lazy-init="true">
+	default-lazy-init="true" >
+
+	<context:component-scan base-package="org.foodTrade.server" >
+		<context:include-filter type="annotation" expression="org.springframework.stereotype.Component"/>
+		<context:include-filter type="annotation" expression="org.springframework.stereotype.Service"/>
+	</context:component-scan>
+
+	<import resource="spring-env.xml"/>
+	<import resource="spring-db.xml"/>
 
 </beans>
