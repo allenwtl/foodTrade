@@ -20,7 +20,6 @@
 
 	<modules>
 		<module>foodTrade-admin</module>
-		<module>foodTrade-common</module>
 		<module>foodTrade-server</module>
 		<module>foodTrade-touch</module>
 	</modules>

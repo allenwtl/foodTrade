@@ -16,15 +16,15 @@ public interface GenericDao {
 	
 	/**
 	 * 通过ID字段查询唯一记录
-	 * @param statement
-	 * @param uniqueColumn
+	 * @param sqlNameWithNameSpace
+	 * @param id
 	 * @return
 	 */
 	public <T> T queryUnique(String sqlNameWithNameSpace, Long id);
 	
 	/**
 	 * 通过唯一字段查询唯一记录
-	 * @param statement
+	 * @param sqlNameWithNameSpace
 	 * @param uniqueColumn
 	 * @return
 	 */
