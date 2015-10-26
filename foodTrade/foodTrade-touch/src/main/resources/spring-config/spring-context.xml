@@ -6,5 +6,8 @@
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
 		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd "
 	default-lazy-init="true">
+	
+	
+	<import resource="classpath:server-spring-config/spring-context.xml" />
 
 </beans>
