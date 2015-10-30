@@ -9,7 +9,9 @@ import java.util.Calendar;
 
 import org.apache.ibatis.type.BaseTypeHandler;
 import org.apache.ibatis.type.JdbcType;
+import org.apache.ibatis.type.MappedTypes;
 
+@MappedTypes(Calendar.class)
 public class CalendarTypeHandler extends BaseTypeHandler<Calendar>{
 
 	@Override

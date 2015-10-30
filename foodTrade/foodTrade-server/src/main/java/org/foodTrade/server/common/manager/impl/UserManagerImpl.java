@@ -1,6 +1,7 @@
 package org.foodTrade.server.common.manager.impl;
 
 
+import java.util.HashMap;
 import java.util.Map;
 
 import javax.annotation.Resource;
@@ -30,8 +31,9 @@ public class UserManagerImpl implements UserManager{
 
 	@Override
 	public User queryOneById(Long id) {
-		dao.queryUnique("UserMapper.queryUser", id);
-		return null;
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("id", id);
+		return dao.queryUnique("UserMapper.queryUser", map);
 	}
 
 }
