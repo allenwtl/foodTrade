@@ -11,6 +11,8 @@ public class User implements Serializable {
 	private String userName;
 	
 	private Calendar updateTime ;
+	
+	private Role role ;
 
 	public String getUserName() {
 		return userName;
@@ -34,6 +36,14 @@ public class User implements Serializable {
 
 	public void setUpdateTime(Calendar updateTime) {
 		this.updateTime = updateTime;
+	}
+
+	public Role getRole() {
+		return role;
+	}
+
+	public void setRole(Role role) {
+		this.role = role;
 	}
 
 	

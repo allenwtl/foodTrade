@@ -5,19 +5,20 @@
 	<resultMap id="UserResultMap" type="User">
 		<id column="id" property="id" />
 		<result column="user_name" property="userName" />
-		<result column="update_time" property="updateTime" javaType="java.util.Calendar" jdbcType=""/>
-	</resultMap>
+		<result column="update_time" property="updateTime"/>
+		<result column="role" property="role.index" />
+	</resultMap> 
 
 	<sql id="selectUserColumn">
-		id,user_name,update_time
+		id,user_name,update_time,role
 	</sql>
 
 
 	<insert id="insertUser" parameterType="User" useGeneratedKeys="true" keyProperty="id">
 		INSERT INTO user 
-		( user_name , update_time)
+		( user_name , update_time, role)
 		VALUES
-		(#{userName}, #{updateTime})
+		(#{userName}, #{updateTime}, #{role.index})
 	</insert>
 
 
