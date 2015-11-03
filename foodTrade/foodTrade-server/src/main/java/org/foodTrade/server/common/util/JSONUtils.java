@@ -78,6 +78,49 @@ public class JSONUtils {
 	}
 	
 	/**
+	 * 将对象转化成MAP格式
+	 * 如果对象中 属性类型为String 值为("")  则去掉该属性
+	 * 
+	 * @param object
+	 * @return
+	 */
+	public static Map<String, Object> object2MapSpecail(Object object) {
+		Map<String, Object> returnMap = new HashMap<String, Object>();
+
+		if (object == null) {
+			return returnMap;
+		}
+
+		BeanInfo beanInfo = null;
+		try {
+			beanInfo = Introspector.getBeanInfo(object.getClass());
+		} catch (IntrospectionException e1) {
+			return returnMap;
+		}
+
+		PropertyDescriptor[] propertyDescriptors = beanInfo.getPropertyDescriptors();
+		for (int i = 0; i < propertyDescriptors.length; i++) {
+			try {
+				PropertyDescriptor descriptor = propertyDescriptors[i];
+				String propertyName = descriptor.getName();
+				if (!propertyName.equals("class")) {
+					Method readMethod = descriptor.getReadMethod();
+					Object result = readMethod.invoke(object, new Object[0]);
+					if (result != null && !result.equals("")) {
+						returnMap.put(propertyName, result);
+					}
+				}
+			} catch (NullPointerException e) {
+				continue;
+			} catch (Exception e) {
+				break;
+			}
+		}
+
+		return returnMap;
+	}
+	
+	/**
 	 *  将对象转化成字符串，并格式化日期对象
 	 * @param object
 	 * @param dateFormat
