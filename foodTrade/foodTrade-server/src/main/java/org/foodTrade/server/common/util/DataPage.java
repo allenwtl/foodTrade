@@ -168,7 +168,7 @@ public class DataPage<T> implements Serializable {
 	}
 
 	/**
-	 * 获得查询对象时是否先自动执行count查询获取总记录数, 默认为false.
+	 * 获得查询对象时是否先自动执行count查询获取总记录数, 默认为true.
 	 */
 	public boolean isNeedTotalCount() {
 		return needTotalCount;

@@ -30,5 +30,4 @@ public class GoodsBrand extends BaseEntity {
 	public void setGoodsCategoryId(String goodsCategoryId) {
 		this.goodsCategoryId = goodsCategoryId;
 	}
-	
 }

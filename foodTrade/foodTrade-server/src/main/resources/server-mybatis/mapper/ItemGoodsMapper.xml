@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="ItemGoodsMapper">
+
+	<!-- common -->
+	<resultMap id="itemGoodsResultMap" type="ItemGoods">
+		<id column="id" property="id" />
+		<result column="name" property="name" />
+		<result column="update_time" property="updateTime" />
+		<result column="inventory" property="inventory" />
+		<result column="category_id" property="categoryId" />
+		<result column="brand_id" property="brandId" />
+		<result column="version" property="version" />
+		<result column="img_url" property="imgUrl" />
+		<result column="remark" property="remark" />
+		<result column="flag" property="flag" />
+	</resultMap>
+
+	<sql id="selectItemGoodsColumn">
+		id,name,update_time,inventory,category_id,brand_id,version,img_url,remark,flag
+	</sql>
+
+	<sql id="queryOption">
+		1 =1
+		<if test="id !=null ">
+			and id = #{id}
+		</if>
+		<if test="name !=null ">
+			and name = #{name}
+		</if>
+		<if test="brandId !=null">
+			and brand_id = #{brandId}
+		</if>
+		<if test="categoryId !=null">
+			and category_id = #{categoryId}
+		</if>
+	</sql>
+
+	<sql id="tableName"> itemGoods </sql>
+	<!-- 各自写的sql -->
+	<insert id="insert" keyProperty="id" useGeneratedKeys="true" parameterType="ItemGoods">
+		insert into
+		<include refid="tableName" />
+		(name,update_time,inventory,category_id,brand_id,version,img_url,remark,flag)
+		values
+		(#{name},#{updateTime},#{inventory},#{categoryId},#{brandId},#{version},#{imgUrl},#{remark},#{flag})
+	</insert>
+
+	<update id="" parameterMap="map">
+		update
+		<include refid="tableName" />
+		set
+		<if test="name != null">
+			name = #{name},
+		</if>
+		<if test="updateTime !=null">
+			update_time = #{updateTime},
+		</if>
+		<if test="inventory !=null">
+			inventory = #{inventory},
+		</if>
+		<if test="categoryId !=null">
+			category_id = #{categoryId},
+		</if>
+		<if test="brandId != null ">
+			brand_id = #{brandId},
+		</if>
+		<if test="imgUrl != null">
+			img_url = #{imgUrl},
+		</if>
+		<if test="remark != null">
+			remark = #{remark},
+		</if>
+		<if test="flag != null">
+			flag = #{flag}
+		</if>
+		where
+		id = #{id} and version = #{version}
+	</update>
+
+	<select id="count" parameterMap="map" resultType="int">
+		select count(*) from
+		<include refid="tableName" />
+		where
+		<include refid="queryOption" />
+	</select>
+
+	<select id="selectList" resultMap="itemGoodsResultMap" parameterMap="map">
+		select
+		<include refid="selectItemGoodsColumn" />
+		from
+		<include refid="tableName" />
+		where
+		<include refid="queryOption" />
+	</select>
+
+	<select id="selectPage" resultMap="itemGoodsResultMap" parameterMap="map">
+		select
+		<include refid="selectItemGoodsColumn" />
+		from
+		<include refid="tableName" />
+		where
+		<include refid="queryOption" />
+		order by id desc limit #{startIndex},#{pageSize}
+	</select>
+	
+</mapper>
