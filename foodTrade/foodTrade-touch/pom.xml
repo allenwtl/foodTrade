@@ -28,7 +28,6 @@
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-webmvc</artifactId>
-			<version>${project.spring.version}</version>
 		</dependency>
 
 	</dependencies>
