@@ -10,7 +10,8 @@
 	</typeAliases>
 
 	<typeHandlers>
-		<package name="org.foodTrade.server.common.dao.typeHandler" />
+		<!-- <package name="org.foodTrade.server.common.dao.typeHandler" /> -->
+		<typeHandler handler="org.foodTrade.server.common.dao.typeHandler.CalendarTypeHandler" javaType="java.util.Calendar"/>
 	</typeHandlers>
 
 	<environments default="development">

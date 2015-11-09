@@ -1,5 +1,7 @@
 package org.foodTrade.server.common.domain;
 
+import java.util.Calendar;
+
 /**
  * 商品品牌
  * @author tianlun.wu
@@ -14,6 +16,8 @@ public class GoodsBrand extends BaseEntity {
 	
 	//商品种类ID
 	private String goodsCategoryId ;
+	
+	private Calendar createTime;
 
 	public String getBrandName() {
 		return brandName;
@@ -30,4 +34,13 @@ public class GoodsBrand extends BaseEntity {
 	public void setGoodsCategoryId(String goodsCategoryId) {
 		this.goodsCategoryId = goodsCategoryId;
 	}
+
+	public Calendar getCreateTime() {
+		return createTime;
+	}
+
+	public void setCreateTime(Calendar createTime) {
+		this.createTime = createTime;
+	}
+	
 }

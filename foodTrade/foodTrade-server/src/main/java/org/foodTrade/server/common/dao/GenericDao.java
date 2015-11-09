@@ -3,6 +3,7 @@ package org.foodTrade.server.common.dao;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.ibatis.annotations.Param;
 import org.foodTrade.server.common.util.DataPage;
 
 public interface GenericDao {
@@ -32,7 +33,7 @@ public interface GenericDao {
 	 * @param id
 	 * @return
 	 */
-	public <T> T queryUnique(String sqlNameWithNameSpace, Long id);
+	public <T> T queryUnique(String sqlNameWithNameSpace, long id);
 
 	/**
 	 * 通过唯一字段查询唯一记录

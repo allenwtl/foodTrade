@@ -102,6 +102,4 @@ public class MemberOrder extends BaseEntity {
 	public void setGoodsAddress(String goodsAddress) {
 		this.goodsAddress = goodsAddress;
 	}
-
-	
 }

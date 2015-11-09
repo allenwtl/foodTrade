@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="MemberMapper">
+
+	<!-- common -->
+	<resultMap type="Member" id="memberResultMap">
+		<id column="id" property="id" />
+		<result column="account" property="account" />
+		<result column="password" property="password" />
+		<result column="phone_no" property="phoneNo" />
+		<result column="card_no" property="cardNo" />
+		<result column="create_time" property="createTime" />
+		<result column="update_time" property="updateTime" />
+		<result column="status" property="status" />
+		<result column="auth_flag" property="authFlag" />
+		<result column="email" property="email" />
+		<result column="last_login_time" property="lastLoginTime" />
+	</resultMap>
+
+	<sql id="selectColumn">
+		id,account,password,phone_no,card_no,create_time,update_time,status,auth_flag,email,last_login_time
+	</sql>
+
+
+	<sql id="queryOption">
+
+	</sql>
+
+	<sql id="tableName"> member </sql>
+
+	<!-- 各自写的sql -->
+	<insert id="insert" useGeneratedKeys="true" keyProperty="id" parameterType="Member">
+		insert into
+		<include refid="tableName" />
+		(account, password, phone_no, card_no, create_time, update_time, status, auth_flag, email, last_login_time)
+		values
+		(#{account},#{password},#{phoneNo},#{cardNo},#{createTime},#{updateTime},#{status},#{authFlag},#{email},#{lastLoginTime})
+	</insert>
+
+	<update id="update" parameterType="map">
+		update
+		<include refid="tableName" />
+		<set>
+			<if test=" password !=null">
+				password = #{password},
+			</if>
+			<if test=" cardNo !=null">
+				card_no = #{cardNo},
+			</if>
+			<if test=" phoneNo !=null">
+				phone_no = #{phoneNo},
+			</if>
+			<if test=" status !=null">
+				status = #{status},
+			</if>
+			<if test=" authFlag !=null">
+				auth_flag = #{authFlag},
+			</if>
+			<if test=" email !=null">
+				email = #{email},
+			</if>
+			<if test=" lastLoginTime !=null">
+				last_login_time = #{lastLoginTime},
+			</if>
+			update_time = #{updateTime}
+		</set>
+		where id = #{id}
+	</update>
+
+	<select id="selectOne" resultMap="memberResultMap">
+		select
+		<include refid="selectColumn" />
+		from
+		<include refid="tableName" />
+		where id = #{id}
+	</select>
+
+	<select id="selectList"></select>
+
+	<select id="selectPage"></select>
+
+</mapper>

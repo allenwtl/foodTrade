@@ -8,6 +8,6 @@ public interface UserManager {
 	
 	public int update(User user);
 	
-	public User queryOneById(Long id );
+	public User queryOneById(long id );
 	
 }

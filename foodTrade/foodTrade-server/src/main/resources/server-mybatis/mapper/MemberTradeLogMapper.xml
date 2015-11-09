@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="MemberTradeLogMapper">
+
+	<!-- common -->
+	<resultMap id="memberTradeLogResultMap" type="MemberTradeLog">
+		<id column="id" property="id"/>
+		<result column="member_id" property="memberId" />
+		<result column="account" property="account" />
+		<result column="create_time" property="createTime" />
+		<result column="cost_money" property="costMoney" />
+		<result column="order_id" property="orderId" />
+		<result column="flag" property="flag" />
+		<result column="info" property="info" />
+	</resultMap>
+
+	<sql id="selectColumn">
+		id,member_id,account,create_time,cost_money,order_id,flag,info
+	</sql>
+
+	<sql id="queryOption">
+		
+	</sql>
+
+	<sql id="tableName"> memberTradeLog </sql>
+	
+	
+	<!-- 各自写的sql -->
+	<insert id="insert" keyProperty="id" useGeneratedKeys="true" parameterType="MemberTradeLog">
+		insert into
+		<include refid="tableName" />
+		(member_id, account, create_time, cost_money, order_id, flag, info)
+		values
+		(#{memberId}, #{account}, #{createTime}, #{costMoney}, #{orderId}, #{flag}, #{info})
+	</insert>
+
+	<update id="update" parameterType="map">
+		update
+		<include refid="tableName" />
+		<set>
+			<if test=" brandName != null">
+				brand_name = #{brandName}
+			</if>
+			<if test=" goodsCategoryId != null">
+				goods_category_id = #{goodsCategoryId}
+			</if>
+		</set>
+		where
+		id = #{id}
+	</update>
+
+	<select id="count" parameterType="map" resultType="int">
+		select count(*) from
+		<include refid="tableName" />
+		<where>
+			<include refid="queryOption" />
+		</where>
+	</select>
+
+	<select id="selectList" resultMap="memberTradeLogResultMap" parameterType="map">
+		select
+		<include refid="selectColumn" />
+		from
+		<include refid="tableName" />
+		where
+		<include refid="queryOption" />
+	</select>
+
+	<select id="selectPage" resultMap="memberTradeLogResultMap" parameterType="map">
+		select
+		<include refid="selectColumn" />
+		from
+		<include refid="tableName" />
+		where
+		<include refid="queryOption" />
+		order by id desc limit #{startIndex},#{pageSize}
+	</select>
+	
+	<select id="selectOne" resultMap="memberTradeLogResultMap" parameterType="long">
+		select
+		<include refid="selectColumn" />
+		from
+		<include refid="tableName" />
+		where id = #{id}
+	</select>
+	
+</mapper>

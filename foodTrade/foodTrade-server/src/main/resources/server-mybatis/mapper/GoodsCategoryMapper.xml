@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="GoodsCategoryMapper">
+
+	<!-- common -->
+	<resultMap id="goodsCategoryResultMap" type="GoodsCategory">
+		<id column="id" property="id"/>
+		<result column=name property="name" />
+		<result column="create_time" property="createTime" />
+	</resultMap>
+
+	<sql id="selectColumn">
+		id,name,create_time
+	</sql>
+
+	<sql id="queryOption">
+		
+	</sql>
+
+	<sql id="tableName"> goodsCategory </sql>
+	
+	
+	<!-- 各自写的sql -->
+	<insert id="insert" keyProperty="id" useGeneratedKeys="true" parameterType="GoodsCategory">
+		insert into
+		<include refid="tableName" />
+		(name, create_time)
+		values
+		(#{name},#{createTime})
+	</insert>
+
+	<update id="update" parameterType="map">
+		update
+		<include refid="tableName" />
+		<set>
+			
+		</set>
+		where
+		id = #{id}
+	</update>
+
+	<select id="count" parameterType="map" resultType="int">
+		select count(*) from
+		<include refid="tableName" />
+		<where>
+			<include refid="queryOption" />
+		</where>
+	</select>
+
+	<select id="selectList" resultMap="goodsCategoryResultMap" parameterType="map">
+		select
+		<include refid="selectColumn" />
+		from
+		<include refid="tableName" />
+		where
+		<include refid="queryOption" />
+	</select>
+
+	<select id="selectPage" resultMap="goodsCategoryResultMap" parameterType="map">
+		select
+		<include refid="selectColumn" />
+		from
+		<include refid="tableName" />
+		where
+		<include refid="queryOption" />
+		order by id desc limit #{startIndex},#{pageSize}
+	</select>
+	
+	<select id="selectOne" resultMap="goodsCategoryResultMap" parameterType="long">
+		select
+		<include refid="selectColumn" />
+		from
+		<include refid="tableName" />
+		where id = #{id}
+	</select>
+	
+</mapper>

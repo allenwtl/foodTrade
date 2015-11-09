@@ -38,5 +38,5 @@ public interface ItemGoodsManager {
 	public DataPage<ItemGoods> queryDataPage(ItemGoodsQueryOption queryOption, DataPage<ItemGoods> dataPage);
 	
 	
-	public ItemGoods queryItemGoods(ItemGoodsQueryOption queryOption);
+	public ItemGoods queryItemGoods(long id);
 }

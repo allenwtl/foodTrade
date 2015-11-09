@@ -1,6 +1,7 @@
 package org.foodTrade.server.common.domain;
 
 import java.math.BigDecimal;
+import java.util.Calendar;
 
 /**
  * 用户购买的订单 单品详情
@@ -18,14 +19,16 @@ public class BuyItemDetail extends BaseEntity {
 	private long itemGoodsId ;
 	
 	//单品价格
-	private BigDecimal itemGoodsPrice ;
+	private BigDecimal price ;
 	
 	//单品数量
-	private int itemGoodsNum ;
+	private int num ;
+	
+	private Calendar createTime ;
 	
 	//计算这个单品的花销
 	public BigDecimal calculateCost() {
-		return this.itemGoodsPrice.multiply(new BigDecimal(itemGoodsNum));
+		return this.price.multiply(new BigDecimal(num));
 	}
 
 	public long getOrderId() {
@@ -44,19 +47,28 @@ public class BuyItemDetail extends BaseEntity {
 		this.itemGoodsId = itemGoodsId;
 	}
 
-	public BigDecimal getItemGoodsPrice() {
-		return itemGoodsPrice;
+	public BigDecimal getPrice() {
+		return price;
 	}
 
-	public void setItemGoodsPrice(BigDecimal itemGoodsPrice) {
-		this.itemGoodsPrice = itemGoodsPrice;
+	public void setPrice(BigDecimal price) {
+		this.price = price;
 	}
 
-	public int getItemGoodsNum() {
-		return itemGoodsNum;
+	public int getNum() {
+		return num;
 	}
 
-	public void setItemGoodsNum(int itemGoodsNum) {
-		this.itemGoodsNum = itemGoodsNum;
+	public void setNum(int num) {
+		this.num = num;
 	}
+
+	public Calendar getCreateTime() {
+		return createTime;
+	}
+
+	public void setCreateTime(Calendar createTime) {
+		this.createTime = createTime;
+	}
+	
 }

@@ -3,9 +3,9 @@
 <mapper namespace="UserMapper">
 
 	<resultMap id="UserResultMap" type="User">
-		<id column="id" property="id" />
+		<id column="id" property="id" javaType="java.lang.Long"/>
 		<result column="user_name" property="userName" />
-		<result column="update_time" property="updateTime"/>
+		<result column="update_time" property="updateTime" />
 		<result column="role" property="role.index" />
 	</resultMap> 
 
@@ -22,7 +22,7 @@
 	</insert>
 
 
-	<select id="queryUser" resultMap="UserResultMap" parameterType="map">
+	<select id="queryList" resultMap="UserResultMap" parameterType="map">
 		SELECT
 		<include refid="selectUserColumn" />
 		FROM user
@@ -38,6 +38,13 @@
 		<if test="start!=null and offset!=null">
 			limit #{start}, #{offset}
 		</if>
+	</select>
+	
+	<select id="queryOne" resultMap="UserResultMap">
+		SELECT
+		<include refid="selectUserColumn" />
+		FROM user
+		where id = #{id}
 	</select>
 
 	<update id="updateUser"  parameterType="map">

@@ -6,12 +6,13 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.util.Calendar;
+import java.util.GregorianCalendar;
 
 import org.apache.ibatis.type.BaseTypeHandler;
 import org.apache.ibatis.type.JdbcType;
 import org.apache.ibatis.type.MappedTypes;
 
-@MappedTypes(Calendar.class)
+@MappedTypes(value={Calendar.class,GregorianCalendar.class})
 public class CalendarTypeHandler extends BaseTypeHandler<Calendar>{
 
 	@Override

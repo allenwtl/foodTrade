@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="MemberOrderMapper">
+
+	<!-- common -->
+	<resultMap id="memberOrderResultMap" type="MemberOrder">
+		<id column="id" property="id"/>
+		<result column="member_id" property="memberId"/>
+		<result column="account" property="account"/>
+		<result column="need_pay_money" property="needPayMoney"/>
+		<result column="actual_pay_money" property="actualPayMoney"/>
+		<result column="create_time" property="createTime"/>
+		<result column="update_time" property="updateTime"/>
+		<result column="goods_address" property="goodsAddress"/>
+		<result column="flag" property="flag"/>
+	</resultMap>
+
+	<sql id="selectColumn">
+		id,member_id,account,need_pay_money,actual_pay_money,create_time,update_time,goods_address,flag
+	</sql>
+
+	<sql id="queryOption">
+		
+	</sql>
+
+	<sql id="tableName"> memberOrder </sql>
+	
+	<!-- 各自写的sql -->
+	<insert id="insert" keyProperty="id" useGeneratedKeys="true" parameterType="MemberOrder">
+		insert into
+		<include refid="tableName" />
+		(member_id, account, need_pay_money,actual_pay_money,create_time,update_time,goods_address,flag)
+		values
+		(#{memberId},#{account},#{needPayMoney},#{actualPayMoney},#{createTime},#{updateTime},#{goodsAddress},#{flag})
+	</insert>
+
+	<update id="update" parameterType="map">
+		update
+		<include refid="tableName" />
+		<set>
+
+		</set>
+		where
+		id = #{id}
+	</update>
+
+	<select id="count" parameterType="map" resultType="int">
+		select count(*) from
+		<include refid="tableName" />
+		<where>
+			<include refid="queryOption" />
+		</where>
+	</select>
+
+	<select id="selectList" resultMap="goodsBrandResultMap" parameterType="map">
+		select
+		<include refid="selectColumn" />
+		from
+		<include refid="tableName" />
+		where
+		<include refid="queryOption" />
+	</select>
+
+	<select id="selectPage" resultMap="goodsBrandResultMap" parameterType="map">
+		select
+		<include refid="selectColumn" />
+		from
+		<include refid="tableName" />
+		where
+		<include refid="queryOption" />
+		order by id desc limit #{startIndex},#{pageSize}
+	</select>
+	
+	<select id="selectOne" resultMap="goodsBrandResultMap">
+		select
+		<include refid="selectColumn" />
+		from
+		<include refid="tableName" />
+		where id = #{id}
+	</select>
+	
+</mapper>

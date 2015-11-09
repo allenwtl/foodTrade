@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="GoodsBrandMapper">
+
+	<!-- common -->
+	<resultMap id="goodsBrandResultMap" type="GoodsBrand">
+		<id column="id" property="id"/>
+		<result column="brand_name" property="brandName" />
+		<result column="create_time" property="createTime" />
+		<result column="goods_category_id" property="goodsCategoryId" />
+	</resultMap>
+
+	<sql id="selectColumn">
+		id,brand_name,create_time,goods_category_id
+	</sql>
+
+	<sql id="queryOption">
+		
+	</sql>
+
+	<sql id="tableName"> goodsBrand </sql>
+	
+	
+	<!-- 各自写的sql -->
+	<insert id="insert" keyProperty="id" useGeneratedKeys="true" parameterType="GoodsBrand">
+		insert into
+		<include refid="tableName" />
+		(brand_name, create_time, goods_category_id)
+		values
+		(#{brandName},#{createTime},#{goodsCategoryId})
+	</insert>
+
+	<update id="update" parameterType="map">
+		update
+		<include refid="tableName" />
+		<set>
+			<if test=" brandName != null">
+				brand_name = #{brandName}
+			</if>
+			<if test=" goodsCategoryId != null">
+				goods_category_id = #{goodsCategoryId}
+			</if>
+		</set>
+		where
+		id = #{id}
+	</update>
+
+	<select id="count" parameterType="map" resultType="int">
+		select count(*) from
+		<include refid="tableName" />
+		<where>
+			<include refid="queryOption" />
+		</where>
+	</select>
+
+	<select id="selectList" resultMap="goodsBrandResultMap" parameterType="map">
+		select
+		<include refid="selectColumn" />
+		from
+		<include refid="tableName" />
+		where
+		<include refid="queryOption" />
+	</select>
+
+	<select id="selectPage" resultMap="goodsBrandResultMap" parameterType="map">
+		select
+		<include refid="selectColumn" />
+		from
+		<include refid="tableName" />
+		where
+		<include refid="queryOption" />
+		order by id desc limit #{startIndex},#{pageSize}
+	</select>
+	
+	<select id="selectOne" resultMap="goodsBrandResultMap" parameterType="long">
+		select
+		<include refid="selectColumn" />
+		from
+		<include refid="tableName" />
+		where id = #{id}
+	</select>
+	
+</mapper>

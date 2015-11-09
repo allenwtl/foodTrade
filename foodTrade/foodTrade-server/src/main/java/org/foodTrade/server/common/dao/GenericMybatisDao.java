@@ -6,11 +6,12 @@ import java.util.Map;
 
 import javax.annotation.Resource;
 
+import org.apache.ibatis.annotations.Param;
 import org.foodTrade.server.common.util.DataPage;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Component;
 
-@Component(value = "dao")
+@Component(value="dao")
 public class GenericMybatisDao implements GenericDao {
 
 	@Resource(name = "sqlSessionTemplate")
@@ -32,7 +33,7 @@ public class GenericMybatisDao implements GenericDao {
 	}
 
 	@Override
-	public <T> T queryUnique(String sqlNameWithNameSpace, Long id) {
+	public <T> T queryUnique(String sqlNameWithNameSpace, long id) {
 		return mybatisTemplate.selectOne(sqlNameWithNameSpace, id);
 	}
 

@@ -13,8 +13,6 @@
 	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
 		<property name="dataSource" ref="dataSource" />
 		<property name="configLocation" value="classpath:server-mybatis/mybatis-configuration.xml" />
-		<!-- **/**Mapper 中的type 解析 -->
-		<property name="typeAliasesPackage" value="org.foodTrade.server.common.domain" />
 		<property name="mapperLocations">
 			<list>
 				<value>classpath:server-mybatis/**/*Mapper.xml</value>

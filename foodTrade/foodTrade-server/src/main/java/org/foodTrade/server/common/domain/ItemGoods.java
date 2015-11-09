@@ -14,10 +14,15 @@ public class ItemGoods extends BaseEntity{
 	//单品名称
 	private String name ;
 	
+	private Calendar createTime ;
+	
 	private Calendar updateTime ;
 	
 	//库存
 	private int inventory;
+	
+	//销量
+	private int sales ;
 	
 	//所属种类
 	private long categoryId;
@@ -38,8 +43,16 @@ public class ItemGoods extends BaseEntity{
 	 * 1:可销售   2：不可销售
 	 * 否可销售的状态
 	 */
-	private int flag ;
+	private int flag = 1;
 	
+	public Calendar getCreateTime() {
+		return createTime;
+	}
+
+	public void setCreateTime(Calendar createTime) {
+		this.createTime = createTime;
+	}
+
 	public int getVersion() {
 		return version;
 	}
@@ -111,4 +124,13 @@ public class ItemGoods extends BaseEntity{
 	public void setUpdateTime(Calendar updateTime) {
 		this.updateTime = updateTime;
 	}
+
+	public int getSales() {
+		return sales;
+	}
+
+	public void setSales(int sales) {
+		this.sales = sales;
+	}
+	
 }

@@ -20,7 +20,7 @@ public class MemberTradeLog extends BaseEntity {
 	private String account ;
 	
 	//记录创建时间
-	private Calendar create_time ;
+	private Calendar createTime ;
 	
 	//消费的金额
 	private BigDecimal costMoney ;
@@ -28,8 +28,68 @@ public class MemberTradeLog extends BaseEntity {
 	//对应的订单表ID
 	private long orderId ;
 	
+	/**
+	 * 用户交易是否成功
+	 * @see org.foodTrade.server.common.type.BaseSuccessFlag
+	 */
+	private int flag ;
 	
-	
-	
-	
+	//与 flag 相对应的信息
+	private String info ;
+
+	public long getMemberId() {
+		return memberId;
+	}
+
+	public void setMemberId(long memberId) {
+		this.memberId = memberId;
+	}
+
+	public String getAccount() {
+		return account;
+	}
+
+	public void setAccount(String account) {
+		this.account = account;
+	}
+
+	public Calendar getCreateTime() {
+		return createTime;
+	}
+
+	public void setCreateTime(Calendar createTime) {
+		this.createTime = createTime;
+	}
+
+	public BigDecimal getCostMoney() {
+		return costMoney;
+	}
+
+	public void setCostMoney(BigDecimal costMoney) {
+		this.costMoney = costMoney;
+	}
+
+	public long getOrderId() {
+		return orderId;
+	}
+
+	public void setOrderId(long orderId) {
+		this.orderId = orderId;
+	}
+
+	public int getFlag() {
+		return flag;
+	}
+
+	public void setFlag(int flag) {
+		this.flag = flag;
+	}
+
+	public String getInfo() {
+		return info;
+	}
+
+	public void setInfo(String info) {
+		this.info = info;
+	}
 }

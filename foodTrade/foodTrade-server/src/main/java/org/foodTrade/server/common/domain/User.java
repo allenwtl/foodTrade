@@ -6,13 +6,13 @@ import java.util.Calendar;
 public class User implements Serializable {
 	private static final long serialVersionUID = 137519903656217791L;
 
-	private Long id;
+	private long id;
 
 	private String userName;
-	
-	private Calendar updateTime ;
-	
-	private Role role ;
+
+	private Calendar updateTime;
+
+	private Role role;
 
 	public String getUserName() {
 		return userName;
@@ -22,11 +22,11 @@ public class User implements Serializable {
 		this.userName = userName;
 	}
 
-	public Long getId() {
+	public long getId() {
 		return id;
 	}
 
-	public void setId(Long id) {
+	public void setId(long id) {
 		this.id = id;
 	}
 
@@ -46,5 +46,4 @@ public class User implements Serializable {
 		this.role = role;
 	}
 
-	
 }

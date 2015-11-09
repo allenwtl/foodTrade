@@ -29,7 +29,7 @@ public class Member extends BaseEntity {
 	// 最后一次修改时间
 	private Calendar updateTime;
 
-	// 帐号状态(可用：1 不可用 ：2)
+	// 帐号状态(可用：1  不可用 ：2)
 	private long status;
 
 	/**
@@ -45,10 +45,12 @@ public class Member extends BaseEntity {
 	// 最后一次登录时间
 	private Calendar lastLoginTime;
 
+	//验证是否完善资料
 	public boolean hasNameAndCardNo() {
 		return UserAuthStatusConstans.isExistFlagBit(UserAuthStatusConstans.user_info, this.authFlag);
 	}
 
+	//验证是否有手机号码
 	public boolean hasAvliablePhone() {
 		return UserAuthStatusConstans.isExistFlagBit(UserAuthStatusConstans.user_phone, this.authFlag);
 	}

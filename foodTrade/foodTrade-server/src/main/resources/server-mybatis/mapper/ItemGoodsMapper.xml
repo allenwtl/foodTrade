@@ -4,10 +4,12 @@
 
 	<!-- common -->
 	<resultMap id="itemGoodsResultMap" type="ItemGoods">
-		<id column="id" property="id" />
+		<id column="id" property="id"/>
 		<result column="name" property="name" />
+		<result column="create_time" property="createTime" />
 		<result column="update_time" property="updateTime" />
 		<result column="inventory" property="inventory" />
+		<result column="sales" property="sales"/>
 		<result column="category_id" property="categoryId" />
 		<result column="brand_id" property="brandId" />
 		<result column="version" property="version" />
@@ -17,7 +19,7 @@
 	</resultMap>
 
 	<sql id="selectItemGoodsColumn">
-		id,name,update_time,inventory,category_id,brand_id,version,img_url,remark,flag
+		id,name,create_time,update_time,inventory,sales,category_id,brand_id,version,img_url,remark,flag
 	</sql>
 
 	<sql id="queryOption">
@@ -37,16 +39,18 @@
 	</sql>
 
 	<sql id="tableName"> itemGoods </sql>
+	
+	
 	<!-- 各自写的sql -->
 	<insert id="insert" keyProperty="id" useGeneratedKeys="true" parameterType="ItemGoods">
 		insert into
 		<include refid="tableName" />
-		(name,update_time,inventory,category_id,brand_id,version,img_url,remark,flag)
+		(name,create_time,update_time,inventory,category_id,brand_id,version,img_url,remark,flag)
 		values
-		(#{name},#{updateTime},#{inventory},#{categoryId},#{brandId},#{version},#{imgUrl},#{remark},#{flag})
+		(#{name},#{createTime},#{updateTime},#{inventory},#{categoryId},#{brandId},#{version},#{imgUrl},#{remark},#{flag})
 	</insert>
 
-	<update id="" parameterMap="map">
+	<update id="update" parameterType="map">
 		update
 		<include refid="tableName" />
 		set
@@ -58,6 +62,9 @@
 		</if>
 		<if test="inventory !=null">
 			inventory = #{inventory},
+		</if>
+		<if test="sales !=null">
+			sales = sales + #{sales},
 		</if>
 		<if test="categoryId !=null">
 			category_id = #{categoryId},
@@ -72,20 +79,21 @@
 			remark = #{remark},
 		</if>
 		<if test="flag != null">
-			flag = #{flag}
+			flag = #{flag},
 		</if>
+			version = version +1 
 		where
 		id = #{id} and version = #{version}
 	</update>
 
-	<select id="count" parameterMap="map" resultType="int">
+	<select id="count" parameterType="map" resultType="int">
 		select count(*) from
 		<include refid="tableName" />
 		where
 		<include refid="queryOption" />
 	</select>
 
-	<select id="selectList" resultMap="itemGoodsResultMap" parameterMap="map">
+	<select id="selectList" resultMap="itemGoodsResultMap" parameterType="map">
 		select
 		<include refid="selectItemGoodsColumn" />
 		from
@@ -94,7 +102,7 @@
 		<include refid="queryOption" />
 	</select>
 
-	<select id="selectPage" resultMap="itemGoodsResultMap" parameterMap="map">
+	<select id="selectPage" resultMap="itemGoodsResultMap" parameterType="map">
 		select
 		<include refid="selectItemGoodsColumn" />
 		from
@@ -102,6 +110,14 @@
 		where
 		<include refid="queryOption" />
 		order by id desc limit #{startIndex},#{pageSize}
+	</select>
+	
+	<select id="selectOne" resultMap="itemGoodsResultMap" parameterType="long">
+		select
+		<include refid="selectItemGoodsColumn" />
+		from
+		<include refid="tableName" />
+		where id = #{id}
 	</select>
 	
 </mapper>
