@@ -9,16 +9,24 @@ package org.foodTrade.server.common.option;
 public class ItemGoodsQueryOption {
 
 	// 单品ID
-	private long id;
+	private Long id;
 
 	// 单品名称
 	private String name;
 
 	// 单品所属品牌
-	private long brandId;
+	private Long brandId;
 
 	// 所属种类
-	private long categoryId;
+	private Long categoryId;
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
 
 	public String getName() {
 		return name;
@@ -28,28 +36,20 @@ public class ItemGoodsQueryOption {
 		this.name = name;
 	}
 
-	public long getBrandId() {
+	public Long getBrandId() {
 		return brandId;
 	}
 
-	public void setBrandId(long brandId) {
+	public void setBrandId(Long brandId) {
 		this.brandId = brandId;
 	}
 
-	public long getCategoryId() {
+	public Long getCategoryId() {
 		return categoryId;
 	}
 
-	public void setCategoryId(long categoryId) {
+	public void setCategoryId(Long categoryId) {
 		this.categoryId = categoryId;
-	}
-
-	public long getId() {
-		return id;
-	}
-
-	public void setId(long id) {
-		this.id = id;
 	}
 
 }

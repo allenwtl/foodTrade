@@ -13,7 +13,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class MemberManagerImpl implements MemberManager {
 
-	private static final Logger logger = LoggerFactory.getLogger(ItemGoodsManagerImpl.class);
+	private static final Logger logger = LoggerFactory.getLogger(MemberManagerImpl.class);
 	
 	@Resource(name="dao")
 	private GenericDao dao ;
