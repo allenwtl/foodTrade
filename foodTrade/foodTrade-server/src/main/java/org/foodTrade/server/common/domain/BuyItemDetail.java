@@ -15,8 +15,14 @@ public class BuyItemDetail extends BaseEntity {
 	//订单ID
 	private long orderId ;
 	
+	//订单实体
+	private Order order ;
+	
 	//单品详情
 	private long itemGoodsId ;
+	
+	//单品实体
+	private ItemGoods itemGoods ;
 	
 	//单品价格
 	private BigDecimal price ;
@@ -69,6 +75,22 @@ public class BuyItemDetail extends BaseEntity {
 
 	public void setCreateTime(Calendar createTime) {
 		this.createTime = createTime;
+	}
+
+	public Order getOrder() {
+		return order;
+	}
+
+	public void setOrder(Order order) {
+		this.order = order;
+	}
+
+	public ItemGoods getItemGoods() {
+		return itemGoods;
+	}
+
+	public void setItemGoods(ItemGoods itemGoods) {
+		this.itemGoods = itemGoods;
 	}
 	
 }

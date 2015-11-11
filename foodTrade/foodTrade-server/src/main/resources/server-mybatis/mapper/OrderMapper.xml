@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="MemberOrderMapper">
+<mapper namespace="OrderMapper">
 
 	<!-- common -->
-	<resultMap id="memberOrderResultMap" type="MemberOrder">
+	<resultMap id="orderResultMap" type="Order">
 		<id column="id" property="id"/>
 		<result column="member_id" property="memberId"/>
 		<result column="account" property="account"/>
@@ -23,10 +23,10 @@
 		
 	</sql>
 
-	<sql id="tableName"> memberOrder </sql>
+	<sql id="tableName"> order </sql>
 	
 	<!-- 各自写的sql -->
-	<insert id="insert" keyProperty="id" useGeneratedKeys="true" parameterType="MemberOrder">
+	<insert id="insert" keyProperty="id" useGeneratedKeys="true" parameterType="Order">
 		insert into
 		<include refid="tableName" />
 		(member_id, account, need_pay_money,actual_pay_money,create_time,update_time,goods_address,flag)
@@ -52,7 +52,7 @@
 		</where>
 	</select>
 
-	<select id="selectList" resultMap="goodsBrandResultMap" parameterType="map">
+	<select id="selectList" resultMap="orderResultMap" parameterType="map">
 		select
 		<include refid="selectColumn" />
 		from
@@ -61,7 +61,7 @@
 		<include refid="queryOption" />
 	</select>
 
-	<select id="selectPage" resultMap="goodsBrandResultMap" parameterType="map">
+	<select id="selectPage" resultMap="orderResultMap" parameterType="map">
 		select
 		<include refid="selectColumn" />
 		from
@@ -71,7 +71,7 @@
 		order by id desc limit #{startIndex},#{pageSize}
 	</select>
 	
-	<select id="selectOne" resultMap="goodsBrandResultMap">
+	<select id="selectOne" resultMap="orderResultMap">
 		select
 		<include refid="selectColumn" />
 		from

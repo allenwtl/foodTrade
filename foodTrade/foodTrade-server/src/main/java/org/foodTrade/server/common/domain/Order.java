@@ -9,7 +9,7 @@ import java.util.Calendar;
  * @author tianlun.wu
  *
  */
-public class MemberOrder extends BaseEntity {
+public class Order extends BaseEntity {
 
 	private static final long serialVersionUID = -4219000560361211638L;
 
