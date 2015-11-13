@@ -6,7 +6,6 @@ import java.util.Map;
 
 import javax.annotation.Resource;
 
-import org.apache.ibatis.annotations.Param;
 import org.foodTrade.server.common.util.DataPage;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Component;
