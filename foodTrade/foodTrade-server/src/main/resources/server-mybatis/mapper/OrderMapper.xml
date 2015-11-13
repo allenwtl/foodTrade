@@ -20,7 +20,21 @@
 	</sql>
 
 	<sql id="queryOption">
-		
+		<if test=" memeberId != null ">
+			member_id = #{memeberId}
+		</if>
+		<if test=" account != null ">
+			and account = #{account}
+		</if>
+		<if test=" startTime !=null ">
+			and create_time >= #{startTime}
+		</if>		
+		<if test=" endTime !=null ">
+			and <![CDATA[ create_time < #{endTime}]]>
+		</if>
+		<if test=" flag !=null ">
+			and flag = #{flag}
+		</if>
 	</sql>
 
 	<sql id="tableName"> order </sql>
@@ -57,8 +71,9 @@
 		<include refid="selectColumn" />
 		from
 		<include refid="tableName" />
-		where
-		<include refid="queryOption" />
+		<where>
+			<include refid="queryOption" />
+		</where>
 	</select>
 
 	<select id="selectPage" resultMap="orderResultMap" parameterType="map">
@@ -66,8 +81,9 @@
 		<include refid="selectColumn" />
 		from
 		<include refid="tableName" />
-		where
-		<include refid="queryOption" />
+		<where>
+			<include refid="queryOption" />
+		</where>
 		order by id desc limit #{startIndex},#{pageSize}
 	</select>
 	

@@ -5,7 +5,7 @@
 	<!-- common -->
 	<resultMap id="goodsCategoryResultMap" type="GoodsCategory">
 		<id column="id" property="id"/>
-		<result column=name property="name" />
+		<result column="name" property="name" />
 		<result column="create_time" property="createTime" />
 	</resultMap>
 

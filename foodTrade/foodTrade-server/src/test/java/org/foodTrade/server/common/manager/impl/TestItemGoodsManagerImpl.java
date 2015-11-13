@@ -1,11 +1,14 @@
 package org.foodTrade.server.common.manager.impl;
 
+import java.util.List;
+
 import javax.annotation.Resource;
 
 import org.apache.commons.lang3.RandomUtils;
 import org.foodTrade.server.common.BaseTest;
 import org.foodTrade.server.common.domain.ItemGoods;
 import org.foodTrade.server.common.manager.ItemGoodsManager;
+import org.foodTrade.server.common.option.ItemGoodsQueryOption;
 import org.foodTrade.server.common.util.DateUtils;
 import org.foodTrade.server.common.util.ThreadPoolManager;
 import org.junit.Test;
@@ -69,23 +72,10 @@ public class TestItemGoodsManagerImpl extends BaseTest {
 
 	@Test
 	public void test3() {
-
-		for (int i = 0; i < 100; i++) {
-			if (i % 2 == 0) {
-				ThreadPoolManager.getInstance().execute(new Runnable() {
-					@Override
-					public void run() {
-
-					}
-				});
-			} else {
-				ThreadPoolManager.getInstance().execute(new Runnable() {
-					@Override
-					public void run() {
-
-					}
-				});
-			}
-		}
+		ItemGoodsQueryOption queryOption = new ItemGoodsQueryOption();
+		queryOption.setName("茶油");
+		List<ItemGoods> list = itemGoodsManager.queryList(queryOption);
+		System.out.println(list.size());
+		
 	}
 }

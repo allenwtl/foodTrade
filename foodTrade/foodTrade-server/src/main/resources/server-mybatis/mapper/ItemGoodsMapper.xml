@@ -10,6 +10,7 @@
 		<result column="update_time" property="updateTime" />
 		<result column="inventory" property="inventory" />
 		<result column="sales" property="sales"/>
+		<result column="price" property="price"/>
 		<result column="category_id" property="categoryId" />
 		<result column="brand_id" property="brandId" />
 		<result column="version" property="version" />
@@ -19,13 +20,12 @@
 	</resultMap>
 
 	<sql id="selectItemGoodsColumn">
-		id,name,create_time,update_time,inventory,sales,category_id,brand_id,version,img_url,remark,flag
+		id,name,create_time,update_time,inventory,sales,price,category_id,brand_id,version,img_url,remark,flag
 	</sql>
 
 	<sql id="queryOption">
-		1 =1
 		<if test="id !=null ">
-			and id = #{id}
+			id = #{id}
 		</if>
 		<if test="name !=null ">
 			and name = #{name}
@@ -45,9 +45,9 @@
 	<insert id="insert" keyProperty="id" useGeneratedKeys="true" parameterType="ItemGoods">
 		insert into
 		<include refid="tableName" />
-		(name,create_time,update_time,inventory,category_id,brand_id,version,img_url,remark,flag)
+		(name,create_time,update_time,inventory,sales,price,category_id,brand_id,version,img_url,remark,flag)
 		values
-		(#{name},#{createTime},#{updateTime},#{inventory},#{categoryId},#{brandId},#{version},#{imgUrl},#{remark},#{flag})
+		(#{name},#{createTime},#{updateTime},#{inventory},#{sales},#{price},#{categoryId},#{brandId},#{version},#{imgUrl},#{remark},#{flag})
 	</insert>
 
 	<update id="update" parameterType="map">
@@ -89,8 +89,9 @@
 	<select id="count" parameterType="map" resultType="int">
 		select count(*) from
 		<include refid="tableName" />
-		where
-		<include refid="queryOption" />
+		<where>
+			<include refid="queryOption" />
+		</where>
 	</select>
 
 	<select id="selectList" resultMap="itemGoodsResultMap" parameterType="map">
@@ -98,8 +99,9 @@
 		<include refid="selectItemGoodsColumn" />
 		from
 		<include refid="tableName" />
-		where
-		<include refid="queryOption" />
+		<where>
+			<include refid="queryOption" />
+		</where>
 	</select>
 
 	<select id="selectPage" resultMap="itemGoodsResultMap" parameterType="map">
@@ -107,8 +109,9 @@
 		<include refid="selectItemGoodsColumn" />
 		from
 		<include refid="tableName" />
-		where
-		<include refid="queryOption" />
+		<where>
+			<include refid="queryOption" />
+		</where>
 		order by id desc limit #{startIndex},#{pageSize}
 	</select>
 	
