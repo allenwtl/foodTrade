@@ -1,5 +1,6 @@
 package org.foodTrade.server.common.domain;
 
+import java.math.BigDecimal;
 import java.util.Calendar;
 
 /**
@@ -23,6 +24,9 @@ public class ItemGoods extends BaseEntity{
 	
 	//销量
 	private int sales ;
+	
+	//价格
+	private BigDecimal price ;
 	
 	//所属种类
 	private long categoryId;
@@ -131,6 +135,12 @@ public class ItemGoods extends BaseEntity{
 
 	public void setSales(int sales) {
 		this.sales = sales;
+	}
+	public BigDecimal getPrice() {
+		return price;
+	}
+	public void setPrice(BigDecimal price) {
+		this.price = price;
 	}
 	
 }
